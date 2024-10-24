@@ -1,5 +1,5 @@
 {
-    "name": "Input Lock Test",
+    "name": "Dedupe Test",
     "description": "",
     "dependencies": {
         "core": "*",

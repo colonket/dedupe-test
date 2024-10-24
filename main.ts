@@ -1,6 +1,6 @@
-// Send Increment Command
 input.onButtonPressed(Button.A, function () {
     radio.sendString("INC!")
+    basic.pause(2000)
 })
 radio.onReceivedString(function (receivedString) {
     if (receivedString == "INC!") {
@@ -9,19 +9,25 @@ radio.onReceivedString(function (receivedString) {
 })
 // Toggle Device Type
 input.onButtonPressed(Button.B, function () {
-    if (true) {
-    	
+    if (deviceType == "client") {
+        deviceType = "server"
     } else {
-    	
+        deviceType = "client"
     }
+    counter = 0
 })
-// Show Device Type
-input.onLogoEvent(TouchButtonEvent.Pressed, function () {
-	
+input.onGesture(Gesture.Shake, function () {
+    counter = 0
 })
-radio.setGroup(1)
-let counter = 0
 let deviceType = ""
+let counter = 0
+radio.setGroup(1)
+counter = 0
+deviceType = "client"
 basic.forever(function () {
-    basic.showNumber(0)
+    if (deviceType == "client") {
+        basic.showString("C")
+    } else {
+        basic.showNumber(counter)
+    }
 })
